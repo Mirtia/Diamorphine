@@ -68,10 +68,10 @@ extern int log_level;
   } while (0)
 
 /* Function entry/exit logging macros */
-#define LOG_FUNC_ENTRY() LOG_DEBUG("Entering function: %s", __FUNCTION__)
-#define LOG_FUNC_EXIT() LOG_DEBUG("Exiting function: %s", __FUNCTION__)
+#define LOG_FUNC_ENTRY() LOG_INFO("Entering function: %s", __FUNCTION__)
+#define LOG_FUNC_EXIT() LOG_INFO("Exiting function: %s", __FUNCTION__)
 #define LOG_FUNC_EXIT_RET(ret)                                                 \
-  LOG_DEBUG("Exiting function: %s with return value: %d", __FUNCTION__, ret)
+  LOG_INFO("Exiting function: %s with return value: %d", __FUNCTION__, ret)
 
 /* Function prototypes */
 unsigned long *get_syscall_table_bf(void);
